@@ -50,7 +50,6 @@ class Dog
     SQL
 
     DB[:conn].execute(insert_sql, self.name, self.breed)
-    id = DB[:conn].execute(last_id_sql)
-    binding.pry
+    self.id = DB[:conn].execute(last_id_sql)[0][0]
   end
 end
