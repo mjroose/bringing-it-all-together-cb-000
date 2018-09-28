@@ -38,4 +38,5 @@ class Dog
 
     dog_data = DB[:conn].execute(sql, name).flatten
     self.new_from_db(dog_data[0])
+  end
 end
