@@ -50,6 +50,10 @@ class Dog
     self.new_from_db(row)
   end
 
+  def self.find_or_create_by(name, breed)
+
+  end
+
   def save
     insert_sql = <<-SQL
       INSERT INTO dogs (name, breed) VALUES (?, ?);
