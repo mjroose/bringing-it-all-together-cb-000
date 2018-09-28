@@ -59,7 +59,7 @@ class Dog
     row = DB[:conn].execute(sql, dog_attr[:name], dog_attr[:breed]).flatten
 
     if row.empty?
-      dog = self.create(dog_attr[:name], dog_attr[:breed])
+      dog = self.create(dog_attr)
     else
       dog = self.new_from_db(row)
     end
