@@ -39,4 +39,14 @@ class Dog
     dog_data = DB[:conn].execute(sql, name).flatten
     self.new_from_db(dog_data[0])
   end
+
+  def save
+    sql = <<-SQL
+      INSERT INTO dogs (name, breed) VALUES (?, ?);
+      SELECT last_insert_rowid();
+    SQL
+
+    id = DB[:conn].execute(sql, self.name, self.breed)
+    binding.pry
+  end
 end
