@@ -41,12 +41,16 @@ class Dog
   end
 
   def save
-    sql = <<-SQL
+    insert_sql = <<-SQL
       INSERT INTO dogs (name, breed) VALUES (?, ?);
+    SQL
+
+    last_id_sql = <<-SQL
       SELECT last_insert_rowid();
     SQL
 
-    id = DB[:conn].execute(sql, self.name, self.breed)
+    DB[:conn].execute(insert_sql, self.name, self.breed)
+    id = DB[:conn].execute(last_id_sql)
     binding.pry
   end
 end
