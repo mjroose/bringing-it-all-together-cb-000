@@ -40,6 +40,16 @@ class Dog
     self.new_from_db(row)
   end
 
+  def self.find_by_id(id)
+    sql = <<-SQL
+      SELECT * FROM dogs
+      WHERE id = ?;
+    SQL
+
+    row = DB[:conn].execute(sql, id).flatten
+    self.new_from_db(row)
+  end
+
   def save
     insert_sql = <<-SQL
       INSERT INTO dogs (name, breed) VALUES (?, ?);
