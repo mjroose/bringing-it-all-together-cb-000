@@ -51,5 +51,6 @@ class Dog
 
     DB[:conn].execute(insert_sql, self.name, self.breed)
     self.id = DB[:conn].execute(last_id_sql)[0][0]
+    self
   end
 end
