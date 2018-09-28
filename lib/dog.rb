@@ -26,4 +26,15 @@ class Dog
 
     DB[:conn].execute(sql)
   end
+
+  def self.new_from_db
+    sql = <<-SQL
+      SELECT * FROM dogs;
+    SQL
+
+    db_dogs = DB[:conn].execute(sql).flatten
+    db_dogs.collect do |dog|
+      self.new(dog[1], dog[2], dog[0])
+    end
+  end
 end
