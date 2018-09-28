@@ -63,6 +63,7 @@ class Dog
     else
       dog = self.new_from_db(row)
     end
+    dog
   end
 
   def save
