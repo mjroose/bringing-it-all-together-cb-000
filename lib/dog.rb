@@ -36,9 +36,8 @@ class Dog
       SELECT * FROM dogs WHERE dogs.name = ?;
     SQL
 
-    dog_data = DB[:conn].execute(sql, name).flatten
-    binding.pry
-    self.new_from_db(dog_data[0])
+    row = DB[:conn].execute(sql, name).flatten
+    self.new_from_db(row)
   end
 
   def save
